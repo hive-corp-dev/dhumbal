@@ -1,6 +1,5 @@
 ---
 import Header from "../components/Header.astro";
-import App from "../components/App.jsx";
 ---
 
 <html lang="ja">
@@ -12,7 +11,7 @@ import App from "../components/App.jsx";
 		<title>Dhumbal</title>
 	</head>
 	<body>
-		<h1>Dhumbal</h1>
-		<App client:load />
+		<Header />
+		<slot />
 	</body>
 </html>
