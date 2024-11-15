@@ -18,6 +18,15 @@ export default function ScoreBoard({ players, setPlayers }) {
     );
   };
 
+  useEffect(() => {
+    // clear input value
+    inputRefs.current.forEach((inputRef) => {
+      inputRef.current.value = "";
+    });
+
+    return () => {};
+  }, [players]);
+
   return (
     <div>
       <p className={styles.title}>ScoreBoard</p>
@@ -55,7 +64,7 @@ export default function ScoreBoard({ players, setPlayers }) {
         {players.map((player, index) => (
           <div key={index} className={styles.scoreRow}>
             <div className={styles.scoreName}>{player.name}</div>
-            <input type="number" min={0} name={player} ref={inputRefs.current[index]} />
+            <input type="number" placeholder="0" min={0} max={99} name={player} ref={inputRefs.current[index]} />
           </div>
         ))}
 
