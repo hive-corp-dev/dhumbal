@@ -1,25 +1,39 @@
 ---
-import Header from "../components/Header.astro";
-import App from "../components/App.jsx";
+import Base from '../layout/Base.astro';
+import Counter from "../components/counter-app/counter/counter";
+import Container from '../components/Container.astro';
+import '../styles/global.scss';
 ---
 
-<html lang="ja">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Dhumbal</title>
-	</head>
-	<body>
-		<h1>Dhumbal</h1>
-		<App client:load />
-	</body>
-</html>
+<Base>
+	<div class="wrap">
+		<Container>
+			<h1 class="title">Dhumbal</h1>
+			<div class="counter">
+				<Counter client:load />
+			</div>
+		</Container>
+	</div>
+</Base>
 
-<style is:global>
-	body {
-		font-family: sans-serif;
-		font-size: 16px;
-	}
+<style lang="scss">
+
+.wrap {
+	padding: 4rem 0;
+}
+
+.title {
+	color: #333;
+	font-size: 3.2rem;
+	font-weight: bold;
+	text-align: center;
+	font-family: 'Lato';
+}
+
+.counter {
+	max-width: 72rem;
+	width: 100%;
+	margin:4rem auto 0;
+}
+
 </style>
