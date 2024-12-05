@@ -2,11 +2,13 @@
 const {type, icon} = Astro.props;
 import Icon from './Icon/Icon';
 import { PiWarningFill } from "react-icons/pi";
+import { BsInfoCircleFill } from "react-icons/bs";
+
 
 ---
 
 <div class:list={["box", type]}>
-   {icon === "warning" && <div class:list={['icon', icon]}><PiWarningFill /></div>}
+   {icon === "warning" ? <div class:list={['icon', icon]}><PiWarningFill /></div> : <div class:list={['icon', 'success']}><BsInfoCircleFill /></div>  }
   <slot />
 </div>
 
@@ -16,6 +18,8 @@ import { PiWarningFill } from "react-icons/pi";
     padding: 1.6rem 1.6rem 1.6rem 4.4rem;
     border-radius: .8rem;
     margin: 1.6rem 0;
+    background-color: #daf0ff;
+    color: #1c557b;
 
     .icon {
       position: absolute;
@@ -26,12 +30,32 @@ import { PiWarningFill } from "react-icons/pi";
         font-size: 2rem;
         top: 1.8rem;
       }
+
+      &.success {
+        font-size: 2rem;
+        top: 1.9rem;
+      }
     }
 
     &.warning {
       position: relative;
       background-color: #fff0ac;
       color: #5b530b;
+    }
+
+    
+  }
+</style>
+
+<style lang="scss" is:global>
+  .box {
+
+    & > * {
+      margin-top: 1.6rem;
+
+      &:first-child, &:nth-child(2) {
+        margin-top: 0;
+      }
     }
   }
 </style>

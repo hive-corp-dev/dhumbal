@@ -10,9 +10,16 @@ import cardSpade2 from '/public/images/cards/card-spade-2.svg';
 import cardSpade10 from '/public/images/cards/card-spade-10.svg';
 import cardHeart10 from '/public/images/cards/card-heart-10.svg';
 import cardDiamond10 from '/public/images/cards/card-diamond-10.svg';
+import cardDiamond12 from '/public/images/cards/card-diamond-12.svg';
 import cardSpade11 from '/public/images/cards/card-spade-11.svg';
 import cardSpade12 from '/public/images/cards/card-spade-12.svg';
 import cardSpade13 from '/public/images/cards/card-spade-13.svg';
+import cardHeart1 from '/public/images/cards/card-heart-1.svg';
+import cardHeart2 from '/public/images/cards/card-heart-2.svg';
+import cardHeart3 from '/public/images/cards/card-heart-3.svg';
+import cardHeart4 from '/public/images/cards/card-heart-4.svg';
+import imgDraw from '/public/images/cards/draw.svg';
+
 ---
 
 <Base>
@@ -39,7 +46,46 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
           <li>フェイスカード（J、Q、K）：10点</li>
         </ul>
 
-        <div class="card-point">
+        <div class="example">
+          <div class="example__block">
+            <div class="example__block-title">エース（A）：1点</div>
+            <div class="example__block-cards">
+              <div class="example__block-card">
+                <Image src={cardSpade1} width={48} height={68} alt="エース" />
+              </div>
+            </div>
+          </div>
+          <div class="example__block">
+            <div class="example__block-title">2～10：表示されている数字通りの点数</div>
+            <div class="example__block-cards">
+              <div class="example__block-card">
+                <Image src={cardSpade2} width={48} height={68} alt="2" />
+              </div>
+              <div class="example__block-card -wavy">
+                〜
+              </div>
+              <div class="example__block-card">
+                <Image src={cardSpade10} width={48} height={68} alt="10" />
+              </div>
+            </div>
+          </div>
+          <div class="example__block">
+            <div class="example__block-title">フェイスカード（J、Q、K）：10点</div>
+            <div class="example__block-cards">
+              <div class="example__block-card">
+                <Image src={cardSpade11} width={48} height={68} alt="ジャック" />
+              </div>
+              <div class="example__block-card">
+                <Image src={cardSpade12} width={48} height={68} alt="クイーン" />
+              </div>
+              <div class="example__block-card">
+                <Image src={cardSpade13} width={48} height={68} alt="キング" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="card-point">
           <ul class="card-point__list">
             <li class="card-point__item">
               <ul class="card-point__card-list">
@@ -78,7 +124,7 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
               <span>10点</span>
             </li>
           </ul>
-        </div>
+        </div> -->
 
         <h2>ゲームの目的</h2>
         <p>各プレイで手札の合計点数を最も少なくすることを目指します。ラウンドを繰り返し行い、累積得点が最も少ないプレイヤーが最終的な勝者となります。</p>
@@ -92,10 +138,10 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
           <strong>注意：</strong>一度でもカードを捨てたり引いた後は、このターンで「ショウ」を宣言することはできません。
         </InfoBox>
 
-        <h3>カードを捨てる</h3>
+        <h3>2. カードを捨てる</h3>
         <p>手札から1枚のカードか、以下の組み合わせの複数枚のカードを表向きで捨てます。</p>
         
-        <h4>同じ数字のカード</h4>
+        <h4>同じ数字の組み合わせ</h4>
 
         <p>同じ数字のカードが2枚以上。</p>
 
@@ -127,88 +173,137 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
           </div>
         </div>
 
+        <h4>同じスートで、3枚以上の連続した数字の組み合わせ</h4>
         
-        
-        <ol>
-          <li>カードを捨てる：
-            <ul>
-              <li>手札から1組みのカードか任意の1枚のカードを表向きで捨てます</li>
-              <li>組み合わせにできるカード：
-                <ul>
-                  <li>同じ数字のカードが2枚以上（マークは異なっても構いません）。
-                    <ul>
-                      <li>例：ハートの7とスペードの7。</li>
-                    </ul>
-                  </li>
-                  <li>同じマークで連続した数字のカードが3枚以上。
-                    <ul>
-                      <li>例：クラブの5、6、7。</li>
-                      <li>数字は連続していなければなりません（順不同は不可）。</li>
-                    </ul>
-                  </li>
-                  <li>任意の1枚のカード。</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>カードを引く：
-            <ul>
-              <li>以下のいずれかを選び、1枚カードを引きます。
-                <ul>
-                  <li>山札から1枚引く。</li>
-                  <li>捨て札の山の一番上のカードを引く。</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>ターンの終了：
-            <ul>
-              <li>次のプレイヤーに順番が移ります。</li>
-            </ul>
-          </li>
-        </ol>
+        <p>同じスートで連続した数字のカードが3枚以上。</p>
+
+        <div class="example">
+          <div class="example__block">
+            <div class="example__block-title">例）スペードの10、ジャック、クイーン</div>
+            <div class="example__block-cards">
+              <div class="example__block-card">
+                <Image src={cardSpade10} width={48} height={68} alt="10" class="card" />
+              </div>
+              <div class="example__block-card">
+                <Image src={cardSpade11} width={48} height={68} alt="ジャック" class="card" />
+              </div>
+              <div class="example__block-card">
+                <Image src={cardSpade12} width={48} height={68} alt="クイーン" class="card" />
+              </div>
+            </div>
+          </div>
+
+          <div class="example__block">
+            <div class="example__block-title">例）ハートのエース、2、3、4</div>
+            <div class="example__block-cards">
+              <div class="example__block-card">
+                <Image src={cardHeart1} width={48} height={68} alt="エース" class="card" />
+              </div>
+              <div class="example__block-card">
+                <Image src={cardHeart2} width={48} height={68} alt="2" class="card" />
+              </div>
+              <div class="example__block-card">
+                <Image src={cardHeart3} width={48} height={68} alt="3" class="card" />
+              </div>
+              <div class="example__block-card">
+                <Image src={cardHeart4} width={48} height={68} alt="4" class="card" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        スートが異なる場合や、キング、エース、2のような並びの場合は組み合わせとして成立しません。
+
+        <div class="example">
+          <div class="example__block">
+            <div class="example__block-title">NG例）スートが異なっている</div>
+            <div class="example__block-cards">
+              <div class="example__block-card">
+                <Image src={cardHeart10} width={48} height={68} alt="10" class="card" />
+              </div>
+              <div class="example__block-card">
+                <Image src={cardSpade11} width={48} height={68} alt="ジャック" class="card" />
+              </div>
+              <div class="example__block-card">
+                <Image src={cardDiamond12} width={48} height={68} alt="クイーン" class="card" />
+              </div>
+            </div>
+          </div>
+
+          <div class="example__block">
+            <div class="example__block-title">NG例）キングからエースの並びになっている</div>
+            <div class="example__block-cards">
+              <div class="example__block-card">
+                <Image src={cardSpade13} width={48} height={68} alt="キング" class="card" />
+              </div>
+              <div class="example__block-card">
+                <Image src={cardSpade1} width={48} height={68} alt="エース" class="card" />
+              </div>
+              <div class="example__block-card">
+                <Image src={cardSpade2} width={48} height={68} alt="2" class="card" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>3. カードを引く</h3>
+        <p>以下のいずれかを選び、カードを1枚引きます。</p>
+        <ul>
+          <li>山札から一番上のカードを1枚引く。</li>
+          <li>捨て札の山の一番上のカードを1枚引く。</li>
+        </ul>
+
+        <div class="draw">
+        <Image src={imgDraw} width={628} height={452} alt="" />
+        </div>
+
+        <p>もし自分の前のプレイヤーがカードを2枚以上捨てた場合は、その中から1枚を選んで引くことができます。</p>
+
+        <h3>4. ターンの終了</h3>
+        <p>次のプレイヤーに順番が移ります。</p>
 
         <h2>ショウの宣言とラウンドの終了</h2>
-        <p>ショウの宣言：</p>
-        <ul>
-          <li>プレイヤーの誰かが「ショウ」を宣言した時点で、そのラウンドは終了します。</li>
-          <li>全員が手札を公開し、手札の合計点数を計算します。
-            <ul>
-              <li>「ショウ」を宣言したプレイヤーの手札の合計点数が他の全員よりも少ない場合はそのラウンドの勝者となります。</li>
-              <li>他のプレイヤーの中に「ショウ」を宣言したプレイヤーよりも手札の合計点数が少ない人がいた場合、「ショウ返し」となります。</li>
-            </ul>
-          </li>
-          <li>得点の計算方法は次のセクションを参考にしてください。</li>
-        </ul>
+        <p>ターン開始時に手札の合計点数が5点以下の場合は、「ショウ」を宣言することができます。</p>
+
+        <p>プレイヤーの誰かがショウを宣言した時点で、そのラウンドは終了します。</p>
+
+        <p>全員が手札を公開し、手札の合計点数を計算します。</p>
+
+        <h3>ショウの成功条件</h3>
+        <p>ショウを宣言したプレイヤーの点数が他のプレイヤーよりも低い場合、ショウが成功となり、ラウンドの勝者となります。</p>
+
+        <h3>ショウ返し</h3>
+
+        <p>「ショウ」を宣言したプレイヤーよりも点数が少ないプレイヤーがいた場合、「ショウ返し」となります。</p>
+
+        <p>得点の計算方法は次のセクションを参考にしてください。</p>
 
         <h2>得点計算</h2>
-        <ul>
-          <li>各プレイヤーは残っている手札のカードを点数に換算し、合計します。</li>
-          <li>フェイスカード（J、Q、K）は10点として計算します。</li>
-          <li>「ショウ」が成功した場合：
-            <ul>
-              <li>「ショウ」を宣言したプレイヤーの手札の合計点数が他の全員よりも少ない場合、そのプレイヤーの得点は0点となります。</li>
-              <li>他のプレイヤーはそれぞれ自分の手札の合計点数がそのまま得点となります。</li>
-            </ul>
-          </li>
-          <li>「ショウ返し」が起こった場合：
-            <ul>
-              <li>（他のプレイヤーの中に「ショウ」を宣言したプレイヤーよりも手札の合計点数が少ない人がいた場合、「ショウ返し」となります。)</li>
-              <li>「ショウ」を宣言したプレイヤーは、自分の手札の合計点数に30点を加算します。</li>
-              <li>ショウ返ししたプレイヤー（合計点数が最も少ないプレーヤー）は0点となります。
-                <ul>
-                  <li>同点のプレイヤーが複数人いた場合は、手札の枚数が少ないプレイヤーが優先されます。手札の枚数も同じ場合は、そのプレイヤー全員が0点として扱います。</li>
-                </ul>
-              </li>
-              <li>それ以外のプレイヤーは手札の合計が加算されます。</li>
-            </ul>
-          </li>
-          <li>累積得点：
-            <ul>
-              <li>各ラウンドごとに得点を計算し、各プレイヤーの累積得点に加算します。</li>
-            </ul>
-          </li>
-        </ul>
+
+        <p>各プレイヤーは、手札のカードの合計点数を計算します。</p>
+
+        <h3>ショウが成功した場合</h3>
+        <p>「ショウ」を宣言したプレイヤーの手札の合計点数が他の全員よりも少ない場合、そのプレイヤーの得点は0点となります。</p>
+
+        <p>他のプレイヤーはそれぞれ自分の手札の合計点数がそのまま得点となります。</p>
+
+        <h3>「ショウ返し」が起こった場合</h3>
+        <p>小返しが成立した場合、ショウを宣言したプレイヤーは自分の手札の合計点数 + 30点を加算します。</p>
+        <p>ショウ返ししたプレイヤー（合計点数が最も少ないプレイヤー）は0点となります。</p>
+        <p>それ以外のプレイヤーは手札の合計が加算されます。</p>
+
+        <InfoBox>
+          <p>ショウ返ししたプレイヤーが複数人いた場合は、合計点数が最も少ないプレイヤーのみ0点となります。</p>
+
+          <p>合計点数が最も少ないプレイヤーが複数人いた場合は、手札の枚数が少ないプレイヤーが優先されます。手札の枚数も同じ場合は、そのプレイヤー全員が0点として扱います。</p>
+        </InfoBox>
+
+
+        
+
+        <h3>累積得点</h3>
+
+        <p>各ラウンドごとに得点を計算し、各プレイヤーの累積得点に加算します。</p>
 
         <h2>ゲームの終了と勝敗</h2>
 
@@ -415,9 +510,10 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
 }
 
 .example {
+  margin: 3.2rem 0;
 
   &__block {
-    border: .1rem solid #e0e0e0;
+    border: .1rem solid #e1e3ec;
     padding: 1.2rem;
   }
 
@@ -442,7 +538,20 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
     overflow: hidden;
     width: 5.6rem;
     display: flex;
+
+    &.-wavy {
+      border: none;
+      width: 1.4rem;
+      align-self: center;justify-content: center;
+    }
   }
+}
+
+.draw {
+  // background-color: #000;
+  padding: 2.8rem 9rem 2.4rem;
+  background-color: #e8e8e8;
+  display: flex;
 }
 
 </style>
