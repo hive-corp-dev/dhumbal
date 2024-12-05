@@ -4,9 +4,12 @@ import Counter from "../components/counter-app/counter/counter";
 import Container from '../components/Container.astro';
 import '../styles/global.scss';
 import { Image } from "astro:assets";
+import InfoBox from '../components/parts/InfoBox/InfoBox.astro';
 import cardSpade1 from '/public/images/cards/card-spade-1.svg';
 import cardSpade2 from '/public/images/cards/card-spade-2.svg';
 import cardSpade10 from '/public/images/cards/card-spade-10.svg';
+import cardHeart10 from '/public/images/cards/card-heart-10.svg';
+import cardDiamond10 from '/public/images/cards/card-diamond-10.svg';
 import cardSpade11 from '/public/images/cards/card-spade-11.svg';
 import cardSpade12 from '/public/images/cards/card-spade-12.svg';
 import cardSpade13 from '/public/images/cards/card-spade-13.svg';
@@ -81,13 +84,52 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
         <p>各プレイで手札の合計点数を最も少なくすることを目指します。ラウンドを繰り返し行い、累積得点が最も少ないプレイヤーが最終的な勝者となります。</p>
 
         <h2>ターンの流れ</h2>
+
+        <h3>1. ショウの宣言（任意）</h3>
+        <p>自分のターンの開始時に、手札の合計点数が5点以下の場合、「ショウ」を宣言することができます。</p>
+
+        <InfoBox type="warning" icon="warning">
+          <strong>注意：</strong>一度でもカードを捨てたり引いた後は、このターンで「ショウ」を宣言することはできません。
+        </InfoBox>
+
+        <h3>カードを捨てる</h3>
+        <p>手札から1枚のカードか、以下の組み合わせの複数枚のカードを表向きで捨てます。</p>
+        
+        <h4>同じ数字のカード</h4>
+
+        <p>同じ数字のカードが2枚以上。</p>
+
+        <div class="example">
+          <div class="example__block">
+            <div class="example__block-title">例）スペードの10、ハートの10</div>
+            <div class="example__block-cards">
+              <div class="example__block-card">
+                <Image src={cardSpade10} width={48} height={68} alt="10" class="card" />
+              </div>
+              <div class="example__block-card">
+                <Image src={cardHeart10} width={48} height={68} alt="10" class="card" />
+              </div>
+            </div>
+          </div>
+          <div class="example__block">
+            <div class="example__block-title">例）スペードの10、ハートの10、ダイヤの10</div>
+            <div class="example__block-cards">
+              <div class="example__block-card">
+                <Image src={cardSpade10} width={48} height={68} alt="10" class="card" />
+              </div>
+              <div class="example__block-card">
+                <Image src={cardHeart10} width={48} height={68} alt="10" class="card" />
+              </div>
+              <div class="example__block-card">
+                <Image src={cardDiamond10} width={48} height={68} alt="10" class="card" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        
         <ol>
-          <li>ショウの宣言（任意）：
-            <ul>
-              <li>自分のターンの開始時に、手札の合計点数が5点以下の場合、「ショウ」を宣言することができます。</li>
-              <li>注意：一度でもカードを捨てたり引いた後は、このターンで「ショウ」を宣言することはできません。</li>
-            </ul>
-          </li>
           <li>カードを捨てる：
             <ul>
               <li>手札から1組みのカードか任意の1枚のカードを表向きで捨てます</li>
@@ -238,6 +280,11 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
   }
 
   h3 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  h4 {
     font-size: 1.8rem;
     font-weight: bold;
   }
@@ -302,7 +349,15 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
   }
 
   h3 + * {
-    margin-top: 0.4rem;
+    margin-top: 1.2rem;
+  }
+
+  h4 {
+    margin-top: 2.4rem;
+  }
+
+  h4 + * {
+    margin-top: 1rem;
   }
 }
 
@@ -352,6 +407,41 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
       color: white;
       width: 2.4rem;
     }
+  }
+}
+
+.card {
+  
+}
+
+.example {
+
+  &__block {
+    border: .1rem solid #e0e0e0;
+    padding: 1.2rem;
+  }
+
+  &__block + &__block {
+    margin-top: 1.6rem;
+  }
+
+  &__block-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  &__block-cards {
+    display: flex;
+    gap: 1rem;
+    margin-top: .4rem;
+  }
+
+  &__block-card {
+    border: .1rem solid #cbcbcb;
+    border-radius: .4rem;
+    overflow: hidden;
+    width: 5.6rem;
+    display: flex;
   }
 }
 

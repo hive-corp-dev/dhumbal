@@ -1,0 +1,37 @@
+---
+const {type, icon} = Astro.props;
+import Icon from './Icon/Icon';
+import { PiWarningFill } from "react-icons/pi";
+
+---
+
+<div class:list={["box", type]}>
+   {icon === "warning" && <div class:list={['icon', icon]}><PiWarningFill /></div>}
+  <slot />
+</div>
+
+<style lang="scss">
+  .box {
+    position: relative;
+    padding: 1.6rem 1.6rem 1.6rem 4.4rem;
+    border-radius: .8rem;
+    margin: 1.6rem 0;
+
+    .icon {
+      position: absolute;
+      left: 1.6rem;
+      display: flex;
+
+      &.warning {
+        font-size: 2rem;
+        top: 1.8rem;
+      }
+    }
+
+    &.warning {
+      position: relative;
+      background-color: #fff0ac;
+      color: #5b530b;
+    }
+  }
+</style>
