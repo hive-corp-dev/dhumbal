@@ -80,7 +80,7 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
         <h2>ゲームの目的</h2>
         <p>各プレイで手札の合計点数を最も少なくすることを目指します。ラウンドを繰り返し行い、累積得点が最も少ないプレイヤーが最終的な勝者となります。</p>
 
-        <h2>準備</h2>
+        <h2>ターンの流れ</h2>
         <ol>
           <li>ショウの宣言（任意）：
             <ul>
@@ -169,18 +169,12 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
         </ul>
 
         <h2>ゲームの終了と勝敗</h2>
-        <ul>
-          <li>バースト：
-            <ul>
-              <li>いずれかのプレイヤーの累積得点が100点を超えた時点で、ゲームが終了します。</li>
-            </ul>
-          </li>
-          <li>勝者の決定：
-            <ul>
-              <li>累積得点が最も少ないプレイヤーが勝者となります。</li>
-            </ul>
-          </li>
-        </ul>
+
+        <h3>バースト</h3>
+        <p>いずれかのプレイヤーの累積得点が100点を超えた時点で、ゲームが終了します。</p>
+
+        <h3>勝者の決定</h3>
+        <p>累積得点が最も少ないプレイヤーが勝者となります。</p>
         
       </div>
 		</Container>
@@ -236,13 +230,16 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
     color: #01112c;
 
   h2 {
-    font-family: 'Poppins';
     font-weight: bold;
     font-size: 2.2rem;
     border-bottom: .1rem solid #e1e3ec;
     padding-bottom: .5rem;
-    font-family: 'BIZ UDPGothic', sans-serif;
-  font-family: 'IBM Plex Sans JP', sans-serif;
+    font-family: 'IBM Plex Sans JP', sans-serif;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
   }
 
   p {
@@ -299,6 +296,14 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
   h2 {
     margin-top: 4rem;
   }
+
+  h3 {
+    margin-top: 3.2rem;
+  }
+
+  h3 + * {
+    margin-top: 0.4rem;
+  }
 }
 
 .card-point {
@@ -338,14 +343,14 @@ import cardSpade13 from '/public/images/cards/card-spade-13.svg';
   }
 
   &__card-item {
-    width: 4rem;
+    width: 5.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
 
     &.-wavy {
       color: white;
-
+      width: 2.4rem;
     }
   }
 }
