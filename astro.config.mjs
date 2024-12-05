@@ -8,6 +8,18 @@ export default defineConfig({
     defaultLocale: "ja",
     locales: ["en", "ja"],
   },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `
+          @use "./src/styles/_mixin.scss" as mixin;
+          @use "./src/styles/_var.scss" as var;
+          `,
+        },
+      },
+    },
+  },
 
   integrations: [react()],
 });

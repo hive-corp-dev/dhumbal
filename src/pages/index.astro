@@ -8,9 +8,17 @@ import '../styles/global.scss';
 <Base>
 	<div class="wrap">
 		<Container>
-			<h1 class="title">Dhumbal</h1>
-			<div class="counter">
-				<Counter client:load />
+			<!-- <h1 class="title">Dhumbal</h1> -->
+			<div class="blocks">
+				<a href="/how-to-play" class="block">
+					<h2>HOW TO PLAY</h2>
+					<p class="read">Read</p>
+				</a>
+
+				<a class="block counter">
+					<h2>SCORE COUNTER</h2>
+					<p class="read">Use Counter</p>
+				</a>
 			</div>
 		</Container>
 	</div>
@@ -28,12 +36,89 @@ import '../styles/global.scss';
 	font-weight: bold;
 	text-align: center;
 	font-family: 'Lato';
+	font-family: 'Poppins';
+
+	span {
+		color: red;
+	}
 }
 
-.counter {
-	max-width: 72rem;
-	width: 100%;
-	margin:4rem auto 0;
+.blocks {
+	margin-top: 6.4rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2.4rem;
+}
+
+.block {
+	position: relative;
+	aspect-ratio: 16 / 9;
+	background-image: url('/images/rules.png');
+	background-size: cover;
+	overflow: hidden;
+	border-radius: 1.2rem;
+
+	&.counter {
+		background-image: url('/images/counter.png');
+	}
+
+	&::before {
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0.2) 30%, rgba(0, 0, 0, 0.2) 70%, rgba(0, 0, 0, 0.8) 100%);
+		z-index: 1;
+	}
+
+	// &::after {
+	// 	content: '';
+	// 	width: 8rem;
+	// 	height: 8rem;
+	// 	background-color: green;
+	// 	position: absolute;
+	// 	right: 0;
+	// 	bottom: 0;
+	// 	z-index: 1;
+	// 	clip-path: polygon(100% 0, 0 100%, 100% 100%);
+	// }
+
+	h2 {
+		font-family: 'Poppins';
+		font-size: 2.4rem;
+		font-weight: bold;
+		color: white;
+		position: absolute;
+		top: 1rem;
+		left: 1rem;
+		z-index: 2;
+	}
+
+	.read {
+		color: white;
+		font-size: 1.6rem;
+		z-index: 1;
+		font-family: 'Lato';
+		font-weight: 400;
+		position: absolute;
+		right: 1rem;
+		bottom: 1rem;
+		font-size: 1.2rem;
+		display: flex;
+		align-items: center;
+		gap: .5rem;
+		letter-spacing: .04em;
+
+		&::after {
+			content: '';
+			width: .6rem;
+			height: .8rem;
+			background-color: white;
+			clip-path: polygon(0 0, 100% 50%, 0 100%);
+		}
+	}
 }
 
 </style>

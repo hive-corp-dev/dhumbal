@@ -1,0 +1,353 @@
+---
+import Base from '../layout/Base.astro';
+import Counter from "../components/counter-app/counter/counter";
+import Container from '../components/Container.astro';
+import '../styles/global.scss';
+import { Image } from "astro:assets";
+import cardSpade1 from '/public/images/cards/card-spade-1.svg';
+import cardSpade2 from '/public/images/cards/card-spade-2.svg';
+import cardSpade10 from '/public/images/cards/card-spade-10.svg';
+import cardSpade11 from '/public/images/cards/card-spade-11.svg';
+import cardSpade12 from '/public/images/cards/card-spade-12.svg';
+import cardSpade13 from '/public/images/cards/card-spade-13.svg';
+---
+
+<Base>
+	<div class="wrap">
+    <div class="mv">
+      <h1>HOW TO PLAY</h1>
+    </div>
+		<Container>
+			<div class="rule">
+        <h2>ゲームの目的</h2>
+        <p>各プレイで手札の合計点数を最も少なくすることを目指します。ラウンドを繰り返し行い、累積得点が最も少ないプレイヤーが最終的な勝者となります。</p>
+
+        <h2>プレイ人数</h2>
+        <p>2人以上<br />(推奨は4〜6人)</p>
+
+
+        <h2>使用するカード</h2>
+        <p>ジョーカーを除いた52枚のトランプを使用します。</p>
+
+        <h2>点数の数え方</h2>
+        <ul>
+          <li>エース（A）：1点</li>
+          <li>2～10：表示されている数字通りの点数</li>
+          <li>フェイスカード（J、Q、K）：10点</li>
+        </ul>
+
+        <div class="card-point">
+          <ul class="card-point__list">
+            <li class="card-point__item">
+              <ul class="card-point__card-list">
+                <li class="card-point__card-item">
+                  <Image src={cardSpade1} width={48} height={68} alt="エース" />
+                </li>
+              </ul>
+              <span>1点</span>
+            </li>
+            <li class="card-point__item">
+              <ul class="card-point__card-list">
+                <li class="card-point__card-item">
+                  <Image src={cardSpade2} width={48} height={68} alt="2" />
+                </li>
+                <li class="card-point__card-item -wavy">
+                  〜
+                </li>
+                <li class="card-point__card-item">
+                  <Image src={cardSpade10} width={48} height={68} alt="10" />
+                </li>
+              </ul>
+              <span>2点〜10点</span>
+            </li>
+            <li class="card-point__item">
+              <ul class="card-point__card-list">
+                <li class="card-point__card-item">
+                  <Image src={cardSpade11} width={48} height={68} alt="ジャック" />
+                </li>
+                <li class="card-point__card-item">
+                  <Image src={cardSpade12} width={48} height={68} alt="クイーン" />
+                </li>
+                <li class="card-point__card-item">
+                  <Image src={cardSpade13} width={48} height={68} alt="キング" />
+                </li>
+              </ul>
+              <span>10点</span>
+            </li>
+          </ul>
+        </div>
+
+        <h2>ゲームの目的</h2>
+        <p>各プレイで手札の合計点数を最も少なくすることを目指します。ラウンドを繰り返し行い、累積得点が最も少ないプレイヤーが最終的な勝者となります。</p>
+
+        <h2>準備</h2>
+        <ol>
+          <li>ショウの宣言（任意）：
+            <ul>
+              <li>自分のターンの開始時に、手札の合計点数が5点以下の場合、「ショウ」を宣言することができます。</li>
+              <li>注意：一度でもカードを捨てたり引いた後は、このターンで「ショウ」を宣言することはできません。</li>
+            </ul>
+          </li>
+          <li>カードを捨てる：
+            <ul>
+              <li>手札から1組みのカードか任意の1枚のカードを表向きで捨てます</li>
+              <li>組み合わせにできるカード：
+                <ul>
+                  <li>同じ数字のカードが2枚以上（マークは異なっても構いません）。
+                    <ul>
+                      <li>例：ハートの7とスペードの7。</li>
+                    </ul>
+                  </li>
+                  <li>同じマークで連続した数字のカードが3枚以上。
+                    <ul>
+                      <li>例：クラブの5、6、7。</li>
+                      <li>数字は連続していなければなりません（順不同は不可）。</li>
+                    </ul>
+                  </li>
+                  <li>任意の1枚のカード。</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>カードを引く：
+            <ul>
+              <li>以下のいずれかを選び、1枚カードを引きます。
+                <ul>
+                  <li>山札から1枚引く。</li>
+                  <li>捨て札の山の一番上のカードを引く。</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>ターンの終了：
+            <ul>
+              <li>次のプレイヤーに順番が移ります。</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h2>ショウの宣言とラウンドの終了</h2>
+        <p>ショウの宣言：</p>
+        <ul>
+          <li>プレイヤーの誰かが「ショウ」を宣言した時点で、そのラウンドは終了します。</li>
+          <li>全員が手札を公開し、手札の合計点数を計算します。
+            <ul>
+              <li>「ショウ」を宣言したプレイヤーの手札の合計点数が他の全員よりも少ない場合はそのラウンドの勝者となります。</li>
+              <li>他のプレイヤーの中に「ショウ」を宣言したプレイヤーよりも手札の合計点数が少ない人がいた場合、「ショウ返し」となります。</li>
+            </ul>
+          </li>
+          <li>得点の計算方法は次のセクションを参考にしてください。</li>
+        </ul>
+
+        <h2>得点計算</h2>
+        <ul>
+          <li>各プレイヤーは残っている手札のカードを点数に換算し、合計します。</li>
+          <li>フェイスカード（J、Q、K）は10点として計算します。</li>
+          <li>「ショウ」が成功した場合：
+            <ul>
+              <li>「ショウ」を宣言したプレイヤーの手札の合計点数が他の全員よりも少ない場合、そのプレイヤーの得点は0点となります。</li>
+              <li>他のプレイヤーはそれぞれ自分の手札の合計点数がそのまま得点となります。</li>
+            </ul>
+          </li>
+          <li>「ショウ返し」が起こった場合：
+            <ul>
+              <li>（他のプレイヤーの中に「ショウ」を宣言したプレイヤーよりも手札の合計点数が少ない人がいた場合、「ショウ返し」となります。)</li>
+              <li>「ショウ」を宣言したプレイヤーは、自分の手札の合計点数に30点を加算します。</li>
+              <li>ショウ返ししたプレイヤー（合計点数が最も少ないプレーヤー）は0点となります。
+                <ul>
+                  <li>同点のプレイヤーが複数人いた場合は、手札の枚数が少ないプレイヤーが優先されます。手札の枚数も同じ場合は、そのプレイヤー全員が0点として扱います。</li>
+                </ul>
+              </li>
+              <li>それ以外のプレイヤーは手札の合計が加算されます。</li>
+            </ul>
+          </li>
+          <li>累積得点：
+            <ul>
+              <li>各ラウンドごとに得点を計算し、各プレイヤーの累積得点に加算します。</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h2>ゲームの終了と勝敗</h2>
+        <ul>
+          <li>バースト：
+            <ul>
+              <li>いずれかのプレイヤーの累積得点が100点を超えた時点で、ゲームが終了します。</li>
+            </ul>
+          </li>
+          <li>勝者の決定：
+            <ul>
+              <li>累積得点が最も少ないプレイヤーが勝者となります。</li>
+            </ul>
+          </li>
+        </ul>
+        
+      </div>
+		</Container>
+	</div>
+</Base>
+
+<style lang="scss">
+
+.wrap {
+  padding-top: 4.5rem;
+}
+
+.mv {
+  // height: 30svh;
+  position: relative;
+	aspect-ratio: 16 / 9;
+	background-image: url('/images/rules.png');
+	background-size: cover;
+	overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.4) 70%, rgba(0, 0, 0, 0) 100%);
+		z-index: 1;
+	}
+
+
+  h1 {
+    font-size: 3.2rem;
+    font-family: 'Poppins';
+		font-weight: bold;
+		color: white;z-index: 2;
+  }
+  
+}
+
+.rule {
+  padding:6.4rem 0;
+  
+
+  font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1.75;
+    color: #01112c;
+
+  h2 {
+    font-family: 'Poppins';
+    font-weight: bold;
+    font-size: 2.2rem;
+    border-bottom: .1rem solid #e1e3ec;
+    padding-bottom: .5rem;
+    font-family: 'BIZ UDPGothic', sans-serif;
+  font-family: 'IBM Plex Sans JP', sans-serif;
+  }
+
+  p {
+    font-family: 'Inter Variable', sans-serif;
+    font-family: 'IBM Plex Sans JP', sans-serif;
+  }
+
+  ul:not([class]) {
+
+    li {
+      position: relative;
+      padding-left: .7em;
+
+      &::before {
+        content: '';
+        width: .4rem;
+        height: .4rem;
+        background-color:black;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 1.1rem;
+      }
+    }
+  }
+
+  ol {
+    counter-reset: number;
+
+    & > li {
+      position: relative;
+      padding-left: 1em;
+      counter-increment: number;
+
+      &::before {
+        content: counter(number) '.';
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  &  > * {
+    margin-top: 1.6rem;
+  }
+
+
+  // marings
+  h2 {
+    margin-top: 4rem;
+  }
+}
+
+.card-point {
+  background: #414044;
+  padding: 0.8rem 2.4rem;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.6rem 0;
+    border-bottom: .1rem dashed #6b6b6b;
+
+
+    &:last-child {
+    border-bottom:none;
+
+    }
+
+    span {
+      color: white;
+    }
+  }
+
+  &__card {
+  }
+
+  &__card-list {
+
+    display: flex;
+    gap: .8rem;
+  }
+
+  &__card-item {
+    width: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.-wavy {
+      color: white;
+
+    }
+  }
+}
+
+</style>
