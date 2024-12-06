@@ -19,6 +19,7 @@ import cardHeart2 from '/public/images/cards/card-heart-2.svg';
 import cardHeart3 from '/public/images/cards/card-heart-3.svg';
 import cardHeart4 from '/public/images/cards/card-heart-4.svg';
 import imgDraw from '/public/images/cards/draw.svg';
+import imgSetup from '/public/images/cards/setup.svg';
 
 ---
 
@@ -129,6 +130,23 @@ import imgDraw from '/public/images/cards/draw.svg';
         <h2>ゲームの目的</h2>
         <p>各プレイで手札の合計点数を最も少なくすることを目指します。ラウンドを繰り返し行い、累積得点が最も少ないプレイヤーが最終的な勝者となります。</p>
 
+        <h2>準備</h2>
+        <h3>1. デッキの準備</h3>
+        <p>ジョーカー2枚をデッキから取り除き、52枚のカードをよくシャッフルします。</p>
+
+        <h3>2. カードの配布</h3>
+        <p>各プレイヤーに5枚ずつカードを裏向きで配ります。</p>
+
+        <h3>3. 場のセットアップ</h3>
+        <p>山札を中央に置きます。<br />山札の一番上のカードを表向きにして捨て札の山を作ります。</p>
+
+        <div class="setup">
+        <Image src={imgSetup} width={80} height={54} alt="" />
+        </div>
+
+        <h2>ラウンドの進行</h2>
+        <p>ラウンドは時計回りに進行します。</p>
+
         <h2>ターンの流れ</h2>
 
         <h3>1. ショウの宣言（任意）</h3>
@@ -215,7 +233,7 @@ import imgDraw from '/public/images/cards/draw.svg';
         スートが異なる場合や、キング、エース、2のような並びの場合は組み合わせとして成立しません。
 
         <div class="example">
-          <div class="example__block">
+          <div class="example__block -ng">
             <div class="example__block-title">NG例）スートが異なっている</div>
             <div class="example__block-cards">
               <div class="example__block-card">
@@ -230,7 +248,7 @@ import imgDraw from '/public/images/cards/draw.svg';
             </div>
           </div>
 
-          <div class="example__block">
+          <div class="example__block -ng">
             <div class="example__block-title">NG例）キングからエースの並びになっている</div>
             <div class="example__block-cards">
               <div class="example__block-card">
@@ -301,6 +319,13 @@ import imgDraw from '/public/images/cards/draw.svg';
         <h3>累積得点</h3>
 
         <p>各ラウンドごとに得点を計算し、各プレイヤーの累積得点に加算します。</p>
+
+
+        <h3>次のラウンドを開始</h3>
+
+        <p>累積得点が100点を超えているプレイヤーがいなければ、次のラウンドを開始します。</p>
+
+        <p>前回のラウンドで最初にプレイしたプレイヤーの右隣のプレイヤーからスタートします。</p>
 
         <h2>ゲームの終了と勝敗</h2>
 
@@ -512,6 +537,12 @@ import imgDraw from '/public/images/cards/draw.svg';
   &__block {
     border: .1rem solid #e1e3ec;
     padding: 1.2rem;
+
+    &.-ng {
+      background: #ffe1e1;
+      border-color: #ff8686;
+      border: none;
+    }
   }
 
   &__block + &__block {
@@ -544,8 +575,7 @@ import imgDraw from '/public/images/cards/draw.svg';
   }
 }
 
-.draw {
-  // background-color: #000;
+.draw, .setup {
   padding: 2.8rem 9rem 2.4rem;
   background-color: #e8e8e8;
   display: flex;
